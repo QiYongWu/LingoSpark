@@ -36,7 +36,7 @@ const handleLogin = async () => {
   </div>
 </template>
 
-<style>
+<style scoped>
 .login-container {
   display: flex;
   justify-content: center;
