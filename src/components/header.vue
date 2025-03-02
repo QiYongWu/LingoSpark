@@ -1,9 +1,9 @@
 <script setup lang="ts" name = 'headerOfAll'>
     import {ref} from 'vue'
-    let title  =  ref<string>('智游学堂：对外汉语语法线上教学云服务平台')
+    let title  =  ref<string>('AI上语法：对外汉语语法线上教学云服务平台')
     let mainLand = ref<string>('首页');
-    let logoImage = ref<string>('../../images/logo.png')
-    let logoAiImage = ref<string>('../../images/ai.jpg')
+
+    let logoImage = ref<string>('../../images/ai.jpg')
     let userLand = ref<string>('个人');
 </script>
 <template>
@@ -13,8 +13,16 @@
             {{ title }}
         </h1>
 
-        
-        <img :src = 'logoAiImage' id = 'logo-ai-img'>
+        <div id = 'sign-div'>
+            <RouterLink to = '/sign_in' >
+                <span>登录</span>
+            </RouterLink>
+
+            <RouterLink to = '/sign_up'>
+                <span>注册</span>
+            </RouterLink>
+        </div>
+       
 
        
     </div>
@@ -23,6 +31,9 @@
 
 <style>
 
+#sign-div{
+    margin-left:200px;
+}
 
 
 .header{

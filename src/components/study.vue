@@ -2,7 +2,11 @@
 </script>
 
 <template>
-    <h1>Study</h1>
+    <div id = 'study-div'>
+        <h1>Study</h1>
+    </div>
+
+    
 
 </template>
 
