@@ -8,6 +8,10 @@ import scenarioSimulatio from '@/components/pages/scenarioSimulatio.vue'
 import practiceCenter from '@/components/pages/practiceCenter.vue'
 import aboutSociety from '@/components/pages/aboutSociety.vue'
 import userCenter from '@/components/pages/userCenter.vue'
+
+import detail1 from "@/components/pages/society-details/detail1.vue";
+import detail2 from "@/components/pages/society-details/detail2.vue";
+import detail3 from "@/components/pages/society-details/detail3.vue";
 const router = createRouter(
     {
         // history:createWebHashHistory(), 后台管理系统使用
@@ -50,7 +54,22 @@ const router = createRouter(
 
                     {
                         path:'/about-society',
-                        component:aboutSociety
+                        component:aboutSociety,
+                        children : [
+                            {
+                                path:'detail1',
+                                component:detail1
+                            },
+
+                            {
+                                path:'detail2',
+                                component:detail2
+                            },
+                            {
+                                path:'detail3',
+                                component:detail3
+                            }
+                        ]
                     },
 
                     {
