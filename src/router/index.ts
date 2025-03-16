@@ -1,7 +1,7 @@
 import { createRouter ,createWebHashHistory,createWebHistory} from "vue-router";
 import sign_in from '@/components/pages/sign/sign_in.vue'
 import sign_up from '@/components/pages/sign/sign_up.vue'
-import home from '@/components/home.vue'      //个人主页
+import masterRobot from '@/components/masterRobot.vue'      //个人主页
 import buildTeam from '@/components/pages/buildTeam.vue'
 import classesCenter from '@/components/pages/classesCenter.vue'
 import scenarioSimulatio from '@/components/pages/scenarioSimulatio.vue'
@@ -28,8 +28,8 @@ const router = createRouter(
                     },
 
                     {
-                        path:'/home',
-                        component:home
+                        path:'/masterRobot',
+                        component:masterRobot
                     },
 
                     {

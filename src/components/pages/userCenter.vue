@@ -1,4 +1,4 @@
-<script lang="ts" name = 'userCenter'>
+<script lang="ts" name = 'userCenter' setup>
 </script>
 
 <template>

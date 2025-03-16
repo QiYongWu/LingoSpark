@@ -1,6 +1,8 @@
 <script setup lang="ts" name = 'headerOfAll'>
     import {ref} from 'vue'
-    let title  =  ref<string>('AI上语法：对外汉语语法线上教学云服务平台')
+    let title  =  ref<string>('语启·LingoSpark')
+    let main1 = ref<string>('用AI火花点燃全球汉语语法的认知革命')
+    let main2 = ref<string>('面向全球留学生的汉语教学平台')
     let mainLand = ref<string>('首页');
 
     let logoImage = ref<string>('../../images/ai.jpg')
@@ -12,6 +14,13 @@
         <h1 id = 'title'>
             {{ title }}
         </h1>
+      
+        <h2  style = 'margin-left:50px;'>
+            {{  main2 }}
+        </h2>
+        <h2 style = 'margin-left:130px;'>
+            {{ main1 }}
+        </h2>
 
         <div id = 'sign-div'>
             <RouterLink to = '/sign_in' >
