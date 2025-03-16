@@ -1,126 +1,100 @@
 <script setup lang="ts">
-   import headerOfAll from './components/header.vue'
-   import { RouterView ,RouterLink} from 'vue-router';
+import HeaderOfAll from './components/header.vue'
+import { RouterView } from 'vue-router'
+import { ElContainer, ElHeader, ElAside, ElMain, ElMenu, ElMenuItem } from 'element-plus'
 
+// 将路由配置提取为常量并添加类型
+interface RouteConfig {
+  path: string
+  label: string
+}
 
+const routes: RouteConfig[] = [
+  { path: '/masterRobot', label: 'AI教学' },
+  { path: '/build-team', label: '创作团队' },
+  { path: '/classes-center', label: '课程中心' },
+  { path: '/scenario-simulation', label: '场景模拟' }, // 修复拼写错误
+  { path: '/practice-center', label: '练习中心' },
+  { path: '/about-society', label: '社会专题' },
+  { path: '/user-center', label: '用户中心' }
+]
+
+// 获取当前路由路径用于菜单高亮
+import { useRoute } from 'vue-router'
+const route = useRoute()
 </script>
 
-
-
 <template>
-   <div class="common-layout">
-     <el-container>
-       <el-header>
-         <headerOfAll />
+  <div class="common-layout">
+    <el-container>
+      <el-header height="115px">
+        <HeaderOfAll />
       </el-header>
       
-       <el-container>
-         <el-aside width="300px">   
+      <el-container>
+        <el-aside width="260px">
+          <el-menu
+            router
+            :default-active="route.path"
+            class="navigation-menu"
+            active-text-color="#409EFF"
+            text-color="#333"
+          >
+            <el-menu-item 
+              v-for="(route, index) in routes" 
+              :key="index"
+              :index="route.path"
+            >
+              {{ route.label }}
+            </el-menu-item>
+          </el-menu>
+        </el-aside>
 
-            <div class = 'routes-div'>
-               <el-tabs tab-position="left" 
-               style="
-               height: 800px;
-               margin-top: 50px;
-               " 
-               class="demo-tabs tabs">
-                  <el-tab-pane>
-                     <template #label>
-                        <router-link to="/masterRobot" class="route">AI教学</router-link>
-                     </template>
-                  </el-tab-pane>
-                  
-                  <el-tab-pane>
-                     <template #label>
-                        <router-link to="/build-team" class="route">创作团队</router-link>
-                     </template>
-                  </el-tab-pane>
-
-                  <el-tab-pane>
-                     <template #label>
-                        <router-link to="/classes-center" class="route">课程中心</router-link>
-                     </template>
-                  </el-tab-pane>
-
-                   <el-tab-pane>
-                     <template #label>
-                        <router-link to="/scenario-simulatio" class="route">场景模拟</router-link>
-                     </template>
-                  </el-tab-pane>
-
-                  <el-tab-pane>
-                     <template #label>
-                        <router-link to="/practice-center" class="route">练习中心</router-link>
-                     </template>
-                  </el-tab-pane>
-
-                  <el-tab-pane>
-                     <template #label>
-                        <router-link to="/about-society" class="route">社会专题</router-link>
-                     </template>
-                  </el-tab-pane>
-
-                  <el-tab-pane>
-                     <template #label>
-                        <router-link to="/user-center" class="route">用户中心</router-link>
-                     </template>
-                  </el-tab-pane>
-               </el-tabs>
-   
-            </div>
-         </el-aside>
-
-         <el-main>
-            <RouterView>
-
-            </RouterView>
-         </el-main>
-         
-       </el-container>
-       
-     </el-container>
-   </div>
- </template>
- 
-
+        <el-main>
+          <RouterView />
+        </el-main>
+      </el-container>
+    </el-container>
+  </div>
+</template>
 
 <style scoped>
-
-
-
-.tabs{
-   display:flex;
-   flex-direction: column;
-   align-items: center;
-   justify-content: center;
-   column-gap: 20px;
+.common-layout {
+  min-height: 100vh;
+  display: flex;
 }
- 
- .route{
-   font-size:25px;
- }
 
-   .demo-tabs > .el-tabs__content {
-   padding: 32px;
-   color: #6b778c;
-   font-size: 32px;
-   font-weight: 600;
- }
- 
- .el-tabs--right .el-tabs__content,
- .el-tabs--left .el-tabs__content {
-   height: 100%;
- }
+.el-container {
+  flex: 1;
+}
+
+.el-header {
+  background: #fff;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+}
+
+.navigation-menu {
+  height: calc(100vh - 80px);
+  border-right: none;
+  padding: 16px 0;
+}
+
+.navigation-menu :deep(.el-menu-item) {
+  height: 56px;
+  line-height: 56px;
+  font-size: 16px;
+  margin: 4px 0;
+  transition: all 0.3s;
+}
+
+.navigation-menu :deep(.el-menu-item.is-active) {
+  background-color: #ecf5ff;
+  border-radius: 8px;
+}
+
+.el-main {
+  padding: 24px;
+  background-color: #f5f7fa;
+}
 </style>
-
-
-
- 
- 
-
- 
-
-
-
-
-
