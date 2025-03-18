@@ -14,6 +14,7 @@ declare module 'vue' {
     Detail1: typeof import('./src/components/pages/society-details/detail1.vue')['default']
     Detail2: typeof import('./src/components/pages/society-details/detail2.vue')['default']
     Detail3: typeof import('./src/components/pages/society-details/detail3.vue')['default']
+    ElAvatar: typeof import('element-plus/es')['ElAvatar']
     ElCard: typeof import('element-plus/es')['ElCard']
     ElCol: typeof import('element-plus/es')['ElCol']
     ElRow: typeof import('element-plus/es')['ElRow']

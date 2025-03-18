@@ -1,217 +1,157 @@
-<script setup name = 'buildTeam'>
-import { ref } from 'vue';
 
-const teamMembers = ref([
-  {
-    name: '吕咏航',
-    avatar: require('./吕咏航.jpg'),
-    role: '项目负责人',
-    bio: '广西外国语学院文学院汉语国际教育专业大一新生',
-    skills: ['个人简历', '获得荣誉', '参加活动']
-  },
-  {
-    name: '吴永琦',
-    avatar: require('./吴永琦.png'),
-    role: '项目工程师',
-    bio: '精通前端开发，主导核心架构设计与实现',
-    skills: ['个人简历', '主要成就', '工作经验']
-  },
-  {
-    name: '邓婷',
-    avatar: require('./邓婷.jpg'),
-    role: '前端美化师',
-    bio: '精通前端美化，主负责核心前端美化设计与实现',
-    skills: ['个人简历', '获得荣誉', '参加活动']
-  },
-  {
-    name: '谷禹欣',
-    avatar: require('./谷禹欣.jpg'),
-    role: '课程录制',
-    bio: '一、二、三级语法课程录制与剪辑',
-    skills: ['个人简历', '获得荣誉', '参加活动']
-  },
-  {
-    name: '邱涵',
-    avatar: require('./邱涵.jpg'),
-    role: '课程录制',
-    bio: '四、五、六级语法课程录制与剪辑',
-    skills: ['个人简历', '获得荣誉', '参加活动']
-  },
-  {
-    name: '黄文吉',
-    avatar: require('./黄文吉.png'),
-    role: '项目指导老师',
-    bio: '精通汉语语法教学，主导项目核心实践与论文成果指导',
-    skills: ['个人简历', '主要成就', '项目成果']
-  },
-  {
-    name: '李静',
-    avatar: require('./avatar2.jpg'),
-    role: '项目指导老师',
-    bio: '精通对外汉语教学，主导教学课程视频内容设计',
-    skills: ['个人简历', '主要成就', '获得奖项']
-  }
-]);
+<script lang="ts" setup name = 'buildTeam'> 
+  import { useTeamStore } from '@/store/team';
+  const team = useTeamStore().team;
+  // const teamImages = [
+  // new URL("@/images/team-images/黄文吉.jpg", import.meta.url).href,
+  // new URL("@/images/team-images/李静.jpg", import.meta.url).href,
+  // new URL("@/images/team-images/吕咏航.jpg", import.meta.url).href,
+  // new URL("@/images/team-images/吴永琦.jpg", import.meta.url).href,
+  // new URL("@/images/team-images/邓婷.jpg", import.meta.url).href,
+  // new URL("@/images/team-images/谷禹欣.jpg", import.meta.url).href,
+  // new URL("@/images/team-images/邱涵.jpg", import.meta.url).href,
+  // new URL("@/images/team-images/曹淑岩.jpg", import.meta.url).href,
+  // ]
+  // 
 </script>
 
-<template>
-    <div class="team-container">
-      <div class="team-header">
-        <h1>我们的创作团队</h1>
-        <p>汇聚各领域专家，打造卓越体验</p>
-      </div>
-  
-      <div class="team-grid">
-        <div 
-          v-for="(member, index) in teamMembers"
-          :key="index"
-          class="member-card"
-        >
-          <img 
-            :src="member.avatar" 
-            :alt="member.name" 
-            class="member-avatar"
-          >
-          <div class="member-info">
-            <h3>{{ member.name }}</h3>
-            <div class="member-role">{{ member.role }}</div>
-            <p class="member-bio">{{ member.bio }}</p>
-            <div class="skill-tags">
-              <span 
-                v-for="(tag, tagIndex) in member.skills"
-                :key="tagIndex"
-                class="skill-tag"
-              >
-                {{ tag }}
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </template>
-  
 
-  
-  <style scoped>
-  /* 基础样式复用 */
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', sans-serif;
+
+<template>
+
+<div class = 'team-cards'>
+  <div v-for="person in team" class = 'team-card'>
+    <el-card style="width:300px;height:400px">
+       <el-avatar shape="square" :size="100" fit="cover" :src="person.image" />
+        <template #header>{{person.who}}:{{person.name}}</template>
+        <p>
+        {{ person.work }}
+        </p>
+
+        <hr />
+        <p>
+          邮箱:{{ person.address }}
+        </p>
+      
+      </el-card>
+  </div>
+</div>
+
+</template>
+
+
+<style scoped>
+
+/* 团队卡片容器 - 网格布局 */
+.team-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* 自动填充列，最小300px */
+  gap: 30px; /* 卡片间距 */
+  padding: 20px;
+  justify-content: center; /* 居中对齐 */
+  margin-left:100px;
+}
+
+/* 单个卡片容器 */
+.team-card {
+  transition: transform 0.3s ease; /* 悬停动画 */
+}
+
+/* 卡片悬停效果 */
+.team-card:hover {
+  transform: translateY(-5px);
+  cursor: pointer;
+}
+
+/* Element Plus 卡片自定义样式 */
+.team-card :deep(.el-card) {
+  width: 100%; /* 继承容器宽度 */
+  height: 100%;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+}
+
+.team-card :deep(.el-card:hover) {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* 卡片头部样式 */
+.team-card :deep(.el-card__header) {
+  background-color: #f8f9fa;
+  border-bottom: 2px solid #e9ecef;
+  padding: 15px 20px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+/* 卡片内容样式 */
+.team-card :deep(.el-card__body) {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* 工作描述段落 */
+.team-card p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #666;
+}
+
+/* 分割线样式 */
+.team-card hr {
+  margin: 15px 0;
+  border: 0;
+  border-top: 1px solid #eee;
+}
+
+/* 邮箱信息样式 */
+.team-card p:last-child {
+  font-size: 13px;
+  color: #888;
+  word-break: break-all; /* 长邮箱地址换行 */
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .team-cards {
+    grid-template-columns: 1fr; /* 移动端单列显示 */
+    gap: 20px;
+    padding: 10px;
   }
   
-  body {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    line-height: 1.6;
+  .team-card :deep(.el-card__header) {
+    font-size: 16px;
+    padding: 12px 15px;
   }
-  
-  /* 团队容器 */
-  .team-container {
-    max-width: 1200px;
-    margin: 40px auto;
-    padding: 20px;
+}
+
+@media (min-width: 1200px) {
+  .team-cards {
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); /* 大屏幕放大卡片 */
   }
-  
-  /* 标题样式 */
-  .team-header {
-    text-align: center;
-    margin-bottom: 50px;
-    color: white;
-  }
-  
-  .team-header h1 {
-    font-size: 2.5em;
-    margin-bottom: 15px;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  }
-  
-  /* 成员卡片 */
-  .team-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
-    padding: 20px;
-  }
-  
-  .member-card {
-    background: rgba(255, 255, 255, 0.97);
-    border-radius: 15px;
-    padding: 25px;
-    text-align: center;
-    transition: transform 0.3s, box-shadow 0.3s;
-    cursor: pointer;
-  }
-  
-  .member-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 12px 24px rgba(0,0,0,0.15);
-  }
-  
-  /* 成员头像 */
-  .member-avatar {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    margin: -60px auto 20px;
-    border: 4px solid white;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    transition: transform 0.3s;
-  }
-  
-  .member-card:hover .member-avatar {
-    transform: scale(1.05);
-  }
-  
-  /* 成员信息 */
-  .member-info h3 {
-    color: #2d3748;
-    margin: 15px 0;
-    font-size: 1.4em;
-  }
-  
-  .member-role {
-    color: #667eea;
-    font-weight: 600;
-    margin-bottom: 15px;
-  }
-  
-  .member-bio {
-    color: #718096;
-    font-size: 0.95em;
-    margin-bottom: 20px;
-  }
-  
-  /* 技能标签 */
-  .skill-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    justify-content: center;
-  }
-  
-  .skill-tag {
-    background: #f7fafc;
-    color: #4a5568;
-    padding: 6px 12px;
-    border-radius: 20px;
-    font-size: 0.85em;
-    transition: all 0.3s;
-  }
-  
-  .skill-tag:hover {
-    background: #667eea;
-    color: white;
-  }
-  
-  @media (max-width: 768px) {
-    .team-container {
-      margin: 20px;
-    }
-    
-    .member-card {
-      margin-top: 40px;
-    }
-  }
-  </style>
+}
+
+.demo-fit {
+  display: flex;
+  text-align: center;
+  justify-content: space-between;
+}
+.demo-fit .block {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 0;
+}
+
+.demo-fit .title {
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: var(--el-text-color-secondary);
+}
+</style>
+
