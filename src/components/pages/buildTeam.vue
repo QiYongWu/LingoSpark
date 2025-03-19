@@ -22,6 +22,7 @@
 <div class = 'team-cards'>
   <div v-for="person in team" class = 'team-card'>
     <el-card style="width:300px;height:400px">
+      <i class="fa-solid fa-user"></i>
        <el-avatar shape="square" :size="100" fit="cover" :src="person.image" />
         <template #header>{{person.who}}:{{person.name}}</template>
         <p>
@@ -45,12 +46,12 @@
 /* 团队卡片容器 - 网格布局 */
 .team-cards {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* 自动填充列，最小300px */
-  gap: 30px; /* 卡片间距 */
+  grid-template-columns: repeat(3, 300px); /* 修改为3列 */
+  gap: 20px;
   padding: 20px;
-  justify-content: center; /* 居中对齐 */
-  margin-left:100px;
+  justify-content: center;
 }
+
 
 /* 单个卡片容器 */
 .team-card {

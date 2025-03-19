@@ -5,6 +5,12 @@ const appTitle = ref('语启·LingoSpark')
 const subtitle1 = ref('用AI火花点燃全球汉语语法的认知革命')
 const subtitle2 = ref('面向全球留学生的汉语教学平台')
 const logoImage =  new URL("@/images/ai.jpg", import.meta.url).href // 确保路径正确
+import { Github } from '@icon-park/vue-next'
+import { Robot } from '@icon-park/vue-next'
+import { User } from '@icon-park/vue-next'
+import { AddUser } from '@icon-park/vue-next'
+import { Home } from '@icon-park/vue-next'
+import { Classroom } from '@icon-park/vue-next'
 </script>
 
 <template>
@@ -26,24 +32,33 @@ const logoImage =  new URL("@/images/ai.jpg", import.meta.url).href // 确保路
     </div>
 
     <nav class="auth-links">
-      <a href="https://github.com/QiYongWu/LingoSpark" 
-        target="_blank"
-        rel="noopener noreferrer"
-        class="github-link">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-          <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-        </svg>
+
+
+      <RouterLink to = '/userCenter'>
+        <home theme="outline" size="24" fill="#333"/>
+      </RouterLink>
+      <RouterLink to = '/masterRobot'>
+        <Robot theme="outline" size="24" fill="#333"/>
+      </RouterLink>
+      <RouterLink to = '/classCenter'>
+        <classroom theme="outline" size="24" fill="#333"/>
+      </RouterLink>
+      <a href="https://github.com/QiYongWu/LingoSpark" target = '_blank'>
+        <github theme="outline" size="24" fill="#333" />
       </a>
+      
       <RouterLink 
         to="/sign_in" 
         class="auth-link"
       >
+      <user theme="outline" size="24" fill="#333"/>
         登录
       </RouterLink>
       <RouterLink 
         to="/sign_up" 
         class="auth-link"
       >
+      <add-user theme="outline" size="24" fill="#333"/>
         注册
       </RouterLink>
     </nav>
@@ -52,80 +67,171 @@ const logoImage =  new URL("@/images/ai.jpg", import.meta.url).href // 确保路
 
 <style scoped>
 .app-header {
-  --primary-color: #2c3e50;
-  --accent-color: #42b983;
-  --border-color: #eaecef;
-
+  --gradient-primary: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+  --text-primary: #1e293b;
+  --text-secondary: #64748b;
+  --accent-hover: #4f46e5;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
+  --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1);
+  
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;
-  border-bottom: 1px solid var(--border-color);
-  background-color: white;
-  gap: 1.5rem;
+  padding: 1rem 4rem;
+  background: white;
+  box-shadow: var(--shadow-md);
+  position: relative;
+  border:none;
 }
 
 .brand-section {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 1.5rem;
+  transition: transform 0.3s ease;
 }
 
 .logo {
-  width: 80px;
-  height: 80px;
-  border-radius: 8px;
+  width: 72px;
+  height: 72px;
+  border-radius: 16px;
   object-fit: cover;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.logo:hover {
+  transform: rotate(-5deg) scale(1.05);
 }
 
 .titles {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.25rem;
 }
 
 .main-title {
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: var(--primary-color);
+  font-size: 1.75rem;
+  font-weight: 700;
+  background-image: var(--gradient-primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  letter-spacing: -0.025em;
   margin: 0;
 }
 
 .subtitles {
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
+  gap: 0.15rem;
 }
 
 .subtitle {
-  font-size: 0.9rem;
-  font-weight: 400;
-  color: var(--primary-color);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-secondary);
   margin: 0;
-  opacity: 0.8;
+  position: relative;
+  padding-left: 1.25rem;
+}
+
+.subtitle::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 6px;
+  height: 6px;
+  background: var(--text-secondary);
+  border-radius: 50%;
+  opacity: 0.4;
 }
 
 .auth-links {
   display: flex;
-  gap: 1.5rem;
-  margin-left: auto;
+  gap: 1.25rem;
+  align-items: center;
 }
 
 .auth-link {
-  color: var(--primary-color);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.25rem;
+  border-radius: 8px;
+  font-weight: 500;
+  color: var(--text-primary);
   text-decoration: none;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-  transition: all 0.2s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background: white;
+  border: 1px solid #e2e8f0;
 }
 
 .auth-link:hover {
-  background-color: rgba(var(--accent-color), 0.1);
-  color: var(--accent-color);
+  background: var(--gradient-primary);
+  color: white;
+  box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
+  border-color: transparent;
 }
 
-.auth-link.router-link-active {
-  color: var(--accent-color);
-  font-weight: 500;
+.auth-link:active {
+  transform: translateY(0);
+}
+
+.auth-link i {
+  transition: transform 0.2s ease;
+}
+
+.auth-link:hover i {
+  transform: scale(1.1);
+}
+
+/* 图标按钮统一风格 */
+.auth-links > a:not(.auth-link) {
+  display: flex;
+  padding: 0.75rem;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.auth-links > a:not(.auth-link):hover {
+  background: #f1f5f9;
+  transform: translateY(-2px);
+}
+
+/* 响应式处理 */
+@media (max-width: 1024px) {
+  .app-header {
+    padding: 1rem 2rem;
+  }
+  
+  .subtitle {
+    display: none;
+  }
+  
+  .main-title {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .app-header {
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 1rem;
+  }
+  
+  .brand-section {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .auth-links {
+    width: 100%;
+    justify-content: center;
+  }
 }
 </style>

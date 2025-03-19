@@ -10,7 +10,7 @@ interface RouteConfig {
 }
 
 const routes: RouteConfig[] = [
-  { path: '/masterRobot', label: 'AI教学' },
+  { path: '/masterRobot', label: 'AI教学'},
   { path: '/build-team', label: '创作团队' },
   { path: '/classes-center', label: '课程中心' },
   { path: '/scenario-simulation', label: '场景模拟' }, // 修复拼写错误
