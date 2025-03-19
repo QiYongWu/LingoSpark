@@ -15,7 +15,7 @@ import detail3 from "@/components/pages/society-details/detail3.vue";
 const router = createRouter(
     {
         // history:createWebHashHistory(), 后台管理系统使用
-        history : createWebHistory(),//主营用户界面用
+        history : createWebHashHistory(),//主营用户界面用
         routes:[
                    {
                     path:'/sign_in',
