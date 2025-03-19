@@ -4,7 +4,7 @@ import sign_up from '@/components/pages/sign/sign_up.vue'
 import masterRobot from '@/components/masterRobot.vue'      //个人主页
 import buildTeam from '@/components/pages/buildTeam.vue'
 import classesCenter from '@/components/pages/classesCenter.vue'
-import scenarioSimulatio from '@/components/pages/scenarioSimulatio.vue'
+import scenarioSimulation from '@/components/pages/scenarioSimulatio.vue'
 import practiceCenter from '@/components/pages/practiceCenter.vue'
 import aboutSociety from '@/components/pages/aboutSociety.vue'
 import userCenter from '@/components/pages/userCenter.vue'
@@ -43,8 +43,8 @@ const router = createRouter(
                     },
 
                     {
-                        path:'/scenario-simulatio',
-                        component:scenarioSimulatio
+                        path:'/scenario-simulation',
+                        component:scenarioSimulation
                     },
 
                     {

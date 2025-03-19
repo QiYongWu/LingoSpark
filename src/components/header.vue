@@ -34,13 +34,13 @@ import { Classroom } from '@icon-park/vue-next'
     <nav class="auth-links">
 
 
-      <RouterLink to = '/userCenter'>
+      <RouterLink to = '/user-center'>
         <home theme="outline" size="24" fill="#333"/>
       </RouterLink>
       <RouterLink to = '/masterRobot'>
         <Robot theme="outline" size="24" fill="#333"/>
       </RouterLink>
-      <RouterLink to = '/classCenter'>
+      <RouterLink to = '/classes-center'>
         <classroom theme="outline" size="24" fill="#333"/>
       </RouterLink>
       <a href="https://github.com/QiYongWu/LingoSpark" target = '_blank'>
