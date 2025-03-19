@@ -28,7 +28,7 @@ const route = useRoute()
   <div class="common-layout">
     <el-container>
       <el-header height="115px">
-        <HeaderOfAll />
+        <HeaderOfAll class = 'header-of-all' />
       </el-header>
       
       <el-container>
@@ -59,42 +59,102 @@ const route = useRoute()
 </template>
 
 <style scoped>
+.header-of-all{
+  width:100%;
+ border:none;
+}
+
 .common-layout {
   min-height: 100vh;
-  display: flex;
+  background: #f8fafc;
 }
 
-.el-container {
-  flex: 1;
-}
-
+/* 顶部导航栏固定 */
 .el-header {
-  background: #fff;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
-  z-index: 1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 115px !important; /* 覆盖element默认高度 */
+  background: white;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  padding: 0 2rem !important;
 }
 
+/* 侧边导航栏固定 */
+.el-aside {
+  position: fixed;
+  left: 0;
+  top: 115px; /* 与header高度一致 */
+  bottom: 0;
+  width: 260px !important;
+  z-index: 900;
+  background: white;
+  box-shadow: 4px 0 6px -1px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.el-main {
+  margin-top: 115px; /* header高度 */
+  margin-left: 260px; /* aside宽度 */
+  min-height: calc(100vh - 115px);
+  padding: 2rem;
+  background: #f8fafc;
+  transition: margin 0.3s ease;
+}
+
+/* 现代菜单样式 */
 .navigation-menu {
-  height: calc(100vh - 80px);
-  border-right: none;
-  padding: 16px 0;
+  height: calc(100vh - 115px) !important;
+  border-right: none !important;
+  padding: 1rem 0;
 }
 
 .navigation-menu :deep(.el-menu-item) {
   height: 56px;
   line-height: 56px;
-  font-size: 16px;
-  margin: 4px 0;
-  transition: all 0.3s;
+  margin: 0.5rem 1rem;
+  border-radius: 8px;
+  font-size: 15px;
+  color: #64748b;
+  transition: 
+    background-color 0.3s ease,
+    transform 0.2s ease,
+    box-shadow 0.3s ease;
+}
+
+.navigation-menu :deep(.el-menu-item:hover) {
+  background-color: #f1f5f9 !important;
+  transform: translateX(4px);
 }
 
 .navigation-menu :deep(.el-menu-item.is-active) {
-  background-color: #ecf5ff;
-  border-radius: 8px;
+  background: #6366f1 !important;
+  color: white !important;
+  box-shadow: 0 3px 6px rgba(99, 102, 241, 0.2);
 }
 
-.el-main {
-  padding: 24px;
-  background-color: #f5f7fa;
+/* 响应式处理 */
+@media (max-width: 1024px) {
+  .el-aside {
+    transform: translateX(-100%);
+  }
+  
+  .el-main {
+    margin-left: 0;
+  }
+  
+  .el-header {
+    padding: 0 1rem !important;
+  }
+}
+
+/* 防止z-index冲突 */
+.el-main > * {
+  position: relative;
+  z-index: 1;
 }
 </style>

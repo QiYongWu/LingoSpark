@@ -21,7 +21,7 @@
 
 <div class = 'team-cards'>
   <div v-for="person in team" class = 'team-card'>
-    <el-card style="width:300px;height:400px">
+    <el-card style="width:300px;height:350px">
       <i class="fa-solid fa-user"></i>
        <el-avatar shape="square" :size="100" fit="cover" :src="person.image" />
         <template #header>{{person.who}}:{{person.name}}</template>
@@ -47,8 +47,6 @@
 .team-cards {
   display: grid;
   grid-template-columns: repeat(3, 300px); /* 修改为3列 */
-  gap: 20px;
-  padding: 20px;
   justify-content: center;
 }
 
